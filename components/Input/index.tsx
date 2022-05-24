@@ -1,24 +1,40 @@
-import React, { FC, useState } from 'react';
+import React, { ContextType, FC, useState } from 'react';
 import { Text, View, TextInput, StyleSheet } from 'react-native';
 import Icon from 'react-native-ionicons';
+import * as Constants from "../../constants"
 
 // import {Colors} from 'react-native/Libraries/NewAppScreen';
 
 interface Props {
     icon: string;
     placeholder: string;
-    onChangeText: (text: string) => void;
+    setTodos: (todos: Array<Constants.Todo>) => void;
+    todos: Array<Constants.Todo>;
 }
 
-const Input: FC<Props> = ({ icon, placeholder, onChangeText }) => {
+const Input: FC<Props> = ({ icon, placeholder, setTodos, todos }) => {
 
     const [checked, setChecked] = useState<boolean>(false);
+    const [text, setText] = useState<string>('');
+
     const handlePress = () => {
+        const todo: Constants.Todo = {
+            id: todos.length + 1,
+            title: text,
+            completed: false
+        } 
+        const _todos = [ ...todos, todo]
+        setTodos(_todos);
+
         // set color and icon for checkbox
         setChecked(true);
         setTimeout(() => {
             setChecked(false);
         }, 1000)
+    }
+
+    const handleChangeText = (text: string) => {
+        setText(text);
     }
 
     return (
@@ -28,13 +44,13 @@ const Input: FC<Props> = ({ icon, placeholder, onChangeText }) => {
                 <TextInput
                     placeholderTextColor='#555'
                     placeholder={placeholder}
-                    onChangeText={onChangeText}
+                    onChangeText={handleChangeText}
                 />
                 <Icon
                     name={checked ? "md-checkbox" : "md-checkbox-outline"}
                     size={27.5}
                     color="black"
-                    style={ styles(checked).checkboxIcon }
+                    style={styles(checked).checkboxIcon}
                     onPress={handlePress}
                 />
             </View>
@@ -63,7 +79,7 @@ const styles = (checked = false) => StyleSheet.create({
 
     checkboxIcon: {
         marginRight: 10,
-        marginLeft: 'auto', 
+        marginLeft: 'auto',
         color: checked ? 'green' : 'black'
     }
 });
