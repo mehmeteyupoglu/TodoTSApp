@@ -8,7 +8,7 @@
  * @format
  */
 
-import React from 'react';
+import React, {FC, useState} from 'react';
 import {
   SafeAreaView,
   ScrollView,
@@ -17,23 +17,30 @@ import {
   Text,
   View,
 } from 'react-native';
+import { Input, Header } from "./components"
 
 // import {Colors} from 'react-native/Libraries/NewAppScreen';
 
-const App = () => {
-  return (
-    <View style={styles.container}>
-        <Text>Hello world!</Text>
-    </View>
-  );
+const App: FC = () => {
+    const [searchQuery, setSearchQuery] = useState<string>("")
+    return (
+        <View style={styles.container}>
+            <StatusBar barStyle="dark-content" />
+            <Header text="Todo App"></Header>
+            <Input 
+                icon='md-add' 
+                placeholder='Add todos' 
+                onChangeText={(text) => {console.log(text)}} 
+            />
+        </View>
+    );
 };
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#F5FCFF',
+    justifyContent: 'flex-start', 
+    backgroundColor: '#363d58',
   }
 });
 
