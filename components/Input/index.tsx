@@ -1,5 +1,5 @@
 import React, { ContextType, FC, useState } from 'react';
-import { Text, View, TextInput, StyleSheet } from 'react-native';
+import { Text, View, TextInput, StyleSheet, Keyboard } from 'react-native';
 import Icon from 'react-native-ionicons';
 import * as Constants from "../../constants"
 
@@ -25,11 +25,13 @@ const Input: FC<Props> = ({ icon, placeholder, setTodos, todos }) => {
         } 
         const _todos = [ ...todos, todo]
         setTodos(_todos);
+        Keyboard.dismiss();
 
         // set color and icon for checkbox
         setChecked(true);
         setTimeout(() => {
             setChecked(false);
+            setText('');
         }, 1000)
     }
 
@@ -45,6 +47,7 @@ const Input: FC<Props> = ({ icon, placeholder, setTodos, todos }) => {
                     placeholderTextColor='#555'
                     placeholder={placeholder}
                     onChangeText={handleChangeText}
+                    value={text}
                 />
                 <Icon
                     name={checked ? "md-checkbox" : "md-checkbox-outline"}
