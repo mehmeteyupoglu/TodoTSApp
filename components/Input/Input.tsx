@@ -2,9 +2,6 @@ import React, { ContextType, FC, useState } from 'react';
 import { Text, View, TextInput, StyleSheet, Keyboard, Alert } from 'react-native';
 import Icon from 'react-native-ionicons';
 import * as Constants from "../../constants"
-
-// import {Colors} from 'react-native/Libraries/NewAppScreen';
-
 interface Props {
     icon: string;
     placeholder: string;

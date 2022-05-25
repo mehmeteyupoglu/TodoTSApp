@@ -2,8 +2,7 @@ import React, { ContextType, FC, useState } from 'react';
 import { Text, View, TextInput, StyleSheet, Keyboard, TouchableOpacity } from 'react-native';
 import Icon from 'react-native-ionicons';
 import * as Constants from "../../constants"
-
-import {Colors} from 'react-native/Libraries/NewAppScreen';
+import { colors } from "../../assets"
 
 interface Props {
     item: Constants.Todo;
@@ -29,8 +28,10 @@ const TodoItem: FC<Props> = ({item, todos, setTodos}) => {
 
         setTodos(_todos);
     }
+
+    const completedTodo = item.completed ? styles.completedTodo : {};
     return (
-        <View style={styles.container}>
+        <View style={[styles.container, completedTodo]}>
             <Text style={item.completed ? styles.listItemCompleted : styles.listItem}>{item.title}</Text>
             <View style={styles.iconGroup}>
                 <Icon
@@ -57,9 +58,13 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         justifyContent: 'space-between',
         alignItems: 'center',
-        backgroundColor: '#00000033',
+        backgroundColor: '#202545',
         marginVertical: 10,
         padding: 10,
+    }, 
+
+    completedTodo: {
+        backgroundColor: '#00000033',
     }, 
 
     iconGroup: {
@@ -68,12 +73,12 @@ const styles = StyleSheet.create({
 
     listItem: {
         flex: 1, 
-        color: '#fff',
+        color: colors.white,
     }, 
 
     listItemCompleted: {
         flex: 1,
-        color: Colors.light,
+        color: colors.light,
         textDecorationLine: 'line-through',
     }
 });
