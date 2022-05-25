@@ -14,16 +14,16 @@ interface Props {
 
 const Input: FC<Props> = ({ icon, placeholder, setTodos, todos }) => {
 
-    const [checked, setChecked] = useState<boolean>(false);
-    const [text, setText] = useState<string>('');
+    const [checked, setChecked] = useState < boolean > (false);
+    const [text, setText] = useState < string > ('');
 
     const handlePress = () => {
         const todo: Constants.Todo = {
             id: todos.length + 1,
             title: text,
             completed: false
-        } 
-        const _todos = [ ...todos, todo]
+        }
+        const _todos = [...todos, todo]
         setTodos(_todos);
         Keyboard.dismiss();
 

@@ -8,9 +8,9 @@ interface Props {
 
 const Header: FC<Props> = ({ text }) => {
     return (
-        <View style={styles.container}> 
+        <View style={styles.container}>
             <Text style={styles.headerText}>{text}</Text>
-            <Icon name="md-list-box" size={40} color="white" style={styles.logo}/>
+            <Icon name="md-list-box" size={40} color="white" style={styles.logo} />
         </View>
     );
 };
@@ -26,7 +26,7 @@ const styles = StyleSheet.create({
     headerText: {
         color: 'white',
         fontSize: 20,
-    }, 
+    },
 
     logo: {
         marginTop: 10,

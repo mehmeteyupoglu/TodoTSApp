@@ -18,7 +18,7 @@ import {
   View,
   FlatList
 } from 'react-native';
-import { Input, Header } from "./components"
+import { Input, Header, TodoItem } from "./components"
 import * as Constants from "./constants"
 
 // import {Colors} from 'react-native/Libraries/NewAppScreen';
@@ -37,16 +37,13 @@ const App: FC = () => {
             />
             <View style={styles.todos}>
                 <Text style={styles.todo}>Todos</Text>
-            </View>
-            <View style={styles.todos}>
                 <FlatList
                     scrollEnabled={true}
                     data={todos}
                     keyExtractor={(item) => item.id.toString()}
-                    renderItem={({item}) => <Text style={styles.listItem}>{item.title}</Text>}
+                    renderItem={({item}) => <TodoItem item={item} todos={todos} setTodos={setTodos}/>}
                 />
             </View>
-
         </View>
     );
 };
@@ -65,15 +62,6 @@ const styles = StyleSheet.create({
   todo: {
     color: '#fff',
   }, 
-
-  listItem: {
-    flex: 1, 
-    color: '#fff',
-    marginVertical: 10,
-    padding: 10,
-    paddingVertical: 15,
-    backgroundColor: '#00000033',
-  }
 });
 
 export default App;
