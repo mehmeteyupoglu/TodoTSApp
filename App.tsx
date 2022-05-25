@@ -36,7 +36,17 @@ const App: FC = () => {
                 todos={todos}
             />
             <View style={styles.todos}>
-                <Text style={styles.todo}>Todos</Text>
+                <View style={styles.titleGroup}>
+                    <Text style={styles.title}>
+                        Todos
+                    </Text>
+                    <Text style={styles.todosLength}>
+                        {todos.length}
+                    </Text>
+                </View>
+                {
+                    todos.length <= 0 && <Text style={styles.noTodo}>No todos here. Add some ☺</Text> 
+                }
                 <FlatList
                     scrollEnabled={true}
                     data={todos}
@@ -59,9 +69,32 @@ const styles = StyleSheet.create({
     marginHorizontal: 20,
   }, 
 
-  todo: {
-    color: '#fff',
+  titleGroup: {
+    flexDirection: 'row',
+    alignItems: 'center',
   }, 
+
+  title: {
+    fontSize: 20,
+    color: '#fff',
+    textDecorationLine: 'underline',
+  },
+
+  noTodo: {
+    fontSize: 20,
+    color: '#fff',
+    marginTop: 20,
+  }, 
+
+  todosLength: {
+    alignSelf: 'center',
+    backgroundColor: 'green',
+    marginLeft: 20,
+    paddingVertical: 6,
+    paddingHorizontal: 12,
+    borderRadius: 20,
+    color: '#fff',
+  }
 });
 
 export default App;
