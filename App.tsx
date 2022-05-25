@@ -1,13 +1,3 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
- * Generated with the TypeScript template
- * https://github.com/react-native-community/react-native-template-typescript
- *
- * @format
- */
-
 import React, {FC, useEffect, useState} from 'react';
 import {
   SafeAreaView,
@@ -20,11 +10,11 @@ import {
 } from 'react-native';
 import { Input, Header, TodoItem } from "./components"
 import * as Constants from "./constants"
-
-// import {Colors} from 'react-native/Libraries/NewAppScreen';
+import { colors } from "./assets"
 
 const App: FC = () => {
     const [todos, setTodos] = useState<Array<Constants.Todo>>(Constants.todos);
+    const noTodoStyle = todos.length === 0 ? styles.noTodos : {};
     return (
         <View style={styles.container}>
             <StatusBar barStyle="dark-content" />
@@ -40,7 +30,7 @@ const App: FC = () => {
                     <Text style={styles.title}>
                         Todos
                     </Text>
-                    <Text style={styles.todosLength}>
+                    <Text style={[styles.todosLength, noTodoStyle]}>
                         {todos.length}
                     </Text>
                 </View>
@@ -62,7 +52,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     justifyContent: 'flex-start', 
-    backgroundColor: '#363d58',
+    backgroundColor: colors.primaryBackground,
   }, 
 
   todos: {
@@ -76,24 +66,32 @@ const styles = StyleSheet.create({
 
   title: {
     fontSize: 20,
-    color: '#fff',
+    color: colors.white,
     textDecorationLine: 'underline',
   },
 
   noTodo: {
+    textAlign: 'center',
+    borderRadius: 10, 
+    paddingVertical: 20,
     fontSize: 20,
-    color: '#fff',
+    color: colors.light,
     marginTop: 20,
+    backgroundColor: colors.secondaryBackground,
   }, 
 
   todosLength: {
     alignSelf: 'center',
-    backgroundColor: 'green',
+    backgroundColor: colors.successBackground,
     marginLeft: 20,
     paddingVertical: 6,
     paddingHorizontal: 12,
     borderRadius: 20,
-    color: '#fff',
+    color: colors.white,
+  }, 
+
+  noTodos: {
+    backgroundColor: colors.secondaryBackground,
   }
 });
 

@@ -52,7 +52,6 @@ const Input: FC<Props> = ({ icon, placeholder, setTodos, todos }) => {
     return (
         <View style={styles().container}>
             <View style={styles().input}>
-                <Icon name={icon} size={22} color="#555" style={styles().icon} />
                 <TextInput
                     placeholderTextColor='#555'
                     placeholder={placeholder}
@@ -60,7 +59,7 @@ const Input: FC<Props> = ({ icon, placeholder, setTodos, todos }) => {
                     value={text}
                 />
                 <Icon
-                    name={checked ? "md-checkbox" : "md-checkbox-outline"}
+                    name={checked ? 'md-checkmark' : icon}
                     size={27.5}
                     color="black"
                     style={styles(checked).checkboxIcon}
