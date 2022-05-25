@@ -1,5 +1,5 @@
 import React, { ContextType, FC, useState } from 'react';
-import { Text, View, TextInput, StyleSheet, Keyboard } from 'react-native';
+import { Text, View, TextInput, StyleSheet, Keyboard, Alert } from 'react-native';
 import Icon from 'react-native-ionicons';
 import * as Constants from "../../constants"
 
@@ -18,6 +18,16 @@ const Input: FC<Props> = ({ icon, placeholder, setTodos, todos }) => {
     const [text, setText] = useState < string > ('');
 
     const handlePress = () => {
+        if (text.length <= 0) {
+            Alert.alert(
+                "Add To Do",
+                "Please add a todo item",
+                [{ text: "OK"}],
+                { cancelable: true }
+            );
+            return;
+        }
+
         const todo: Constants.Todo = {
             id: todos.length + 1,
             title: text,
