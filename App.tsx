@@ -1,7 +1,5 @@
-import React, {FC, useEffect, useState} from 'react';
+import React, {FC, useState} from 'react';
 import {
-  SafeAreaView,
-  ScrollView,
   StatusBar,
   StyleSheet,
   Text,
@@ -14,7 +12,6 @@ import { colors } from "./assets"
 
 const App: FC = () => {
     const [todos, setTodos] = useState<Array<Constants.Todo>>(Constants.todos);
-    const noTodoStyle = todos.length === 0 ? styles.noTodos : {};
     return (
         <View style={styles.container}>
             <StatusBar barStyle="dark-content" />
@@ -30,9 +27,17 @@ const App: FC = () => {
                     <Text style={styles.title}>
                         Todos
                     </Text>
-                    <Text style={[styles.todosLength, noTodoStyle]}>
-                        {todos.length}
-                    </Text>
+                    <View style={styles.stats}>
+                        <Text style={[styles.todosLength]}>
+                            {todos.length}
+                        </Text>
+                        <Text style={[styles.todosLength, styles.completedTodo]}>
+                            {todos.filter(todo => todo.completed).length}
+                        </Text>
+                        <Text style={[styles.todosLength, styles.uncompletedTodo]}>
+                            {todos.filter(todo => !todo.completed).length}
+                        </Text>
+                    </View>
                 </View>
                 {
                     todos.length <= 0 && <Text style={styles.noTodo}>No todos here. Add some ☺</Text> 
@@ -62,6 +67,7 @@ const styles = StyleSheet.create({
   titleGroup: {
     flexDirection: 'row',
     alignItems: 'center',
+    justifyContent: 'space-between',
   }, 
 
   title: {
@@ -80,18 +86,27 @@ const styles = StyleSheet.create({
     backgroundColor: colors.secondaryBackground,
   }, 
 
+  stats: {
+    flexDirection: 'row',
+    width: '30%',
+    justifyContent: 'space-between',
+  }, 
+
   todosLength: {
     alignSelf: 'center',
-    backgroundColor: colors.successBackground,
-    marginLeft: 20,
+    backgroundColor: colors.infoBackground,
     paddingVertical: 6,
     paddingHorizontal: 12,
     borderRadius: 20,
     color: colors.white,
   }, 
 
-  noTodos: {
-    backgroundColor: colors.secondaryBackground,
+  completedTodo: {
+    backgroundColor: colors.successBackground,  
+  }, 
+
+  uncompletedTodo: {
+    backgroundColor: colors.errorBackground,
   }
 });
 

@@ -14,13 +14,11 @@ const TodoItem: FC<Props> = ({item, todos, setTodos}) => {
 
     const handleDelete = (id: Number) => {
         const _todos = todos.filter(todo => todo.id !== id);
-
         setTodos(_todos);
     }
 
     const handleToggle =( item: Constants.Todo) => {
         let _todos = todos
-        
         _todos = _todos.filter(todo => todo.id !== item.id)
 
         if(!item.completed){
