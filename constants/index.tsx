@@ -9,12 +9,17 @@ let todos: Array<Todo> = [];
 todos = [
     {
         id: 1,
-        title: 'Go Shopping',
+        title: '1-Go Shopping',
         completed: false
     }, 
     {
         id: 2,
-        title: 'Clean the house',
+        title: '2-Clean the house',
+        completed: false
+    }, 
+    {
+        id: 3,
+        title: '3-Eat dinner',
         completed: false
     }
 ]

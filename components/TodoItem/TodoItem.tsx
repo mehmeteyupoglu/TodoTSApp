@@ -18,14 +18,19 @@ const TodoItem: FC<Props> = ({item, todos, setTodos}) => {
         setTodos(_todos);
     }
 
-    const handleToggle =( id: Number) => {
-        const _todos = todos.map(todo => {
-            if (todo.id === id) {
-                todo.completed = !todo.completed;
-            }
-            return todo;
-        });
+    const handleToggle =( item: Constants.Todo) => {
+        let _todos = todos
+        
+        _todos = _todos.filter(todo => todo.id !== item.id)
 
+        if(!item.completed){
+            _todos.push({
+                ...item, 
+                completed: true
+            })
+        } else {
+            _todos.unshift({...item, completed: false});
+        }
         setTodos(_todos);
     }
 
@@ -39,7 +44,7 @@ const TodoItem: FC<Props> = ({item, todos, setTodos}) => {
                     name={item.completed ? 'md-checkmark' : 'md-checkbox'}
                     size={25}
                     color={item.completed ? 'green' : '#fff'}
-                    onPress={() => handleToggle(item.id)}
+                    onPress={() => handleToggle(item)}
                 />
                 <Icon
                     name={"md-close"}
