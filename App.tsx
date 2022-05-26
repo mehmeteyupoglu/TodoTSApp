@@ -45,7 +45,7 @@ const App: FC = () => {
                 <FlatList
                     scrollEnabled={true}
                     data={todos}
-                    keyExtractor={(item) => item.id.toString()}
+                    keyExtractor={(item) => item.id}
                     renderItem={({item}) => <TodoItem item={item} todos={todos} setTodos={setTodos}/>}
                 />
             </View>
@@ -61,6 +61,7 @@ const styles = StyleSheet.create({
   }, 
 
   todos: {
+    flex: 1,
     marginHorizontal: 20,
   }, 
 

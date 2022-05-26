@@ -1,5 +1,5 @@
-import React, { ContextType, FC, useState } from 'react';
-import { Text, View, TextInput, StyleSheet, Keyboard, TouchableOpacity } from 'react-native';
+import React, { FC } from 'react';
+import { Text, View, StyleSheet } from 'react-native';
 import Icon from 'react-native-ionicons';
 import * as Constants from "../../constants"
 import { colors } from "../../assets"
@@ -12,7 +12,7 @@ interface Props {
 
 const TodoItem: FC<Props> = ({item, todos, setTodos}) => {
 
-    const handleDelete = (id: Number) => {
+    const handleDelete = (id: String) => {
         const _todos = todos.filter(todo => todo.id !== id);
         setTodos(_todos);
     }

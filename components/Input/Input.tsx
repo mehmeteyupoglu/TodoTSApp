@@ -1,7 +1,8 @@
-import React, { ContextType, FC, useState } from 'react';
-import { Text, View, TextInput, StyleSheet, Keyboard, Alert } from 'react-native';
+import React, { FC, useState } from 'react';
+import { View, TextInput, StyleSheet, Keyboard, Alert } from 'react-native';
 import Icon from 'react-native-ionicons';
 import * as Constants from "../../constants"
+import { create_UUID } from '../../utils';
 interface Props {
     icon: string;
     placeholder: string;
@@ -25,13 +26,15 @@ const Input: FC<Props> = ({ icon, placeholder, setTodos, todos }) => {
             return;
         }
 
+        const uuid = create_UUID()
+
         const todo: Constants.Todo = {
-            id: todos.length + 1,
+            id: uuid,
             title: text,
             completed: false
         }
-        const _todos = [...todos, todo]
-        setTodos(_todos);
+        todos.unshift(todo);
+        setTodos(todos);
         Keyboard.dismiss();
 
         // set color and icon for checkbox
